@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Why I Love Macbook But Dislike iPhone
+title: Why I Like Macbook But Dislike iPhone
 ---
 
 This March I purchased a MacBook Pro 13" and replaced my 1st Generation Moto X with a shiny iPhone 6.  Within 2 months I put my iPhone 6 on eBay and bought a 2nd Generation Moto X.  Why?  Mainly because I prefer the Android operating system and the Moto X's low-power notification screen display.
