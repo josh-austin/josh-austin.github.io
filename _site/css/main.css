@@ -447,3 +447,17 @@ pre {
     color: #008080; }
   .highlight .il {
     color: #099; }
+
+div.share-page {
+  text-align: center;
+  background: #2a7ae2;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin: 45px 0; }
+  div.share-page a {
+    font-weight: 700;
+    color: #fff;
+    margin-left: 10px; }
+    div.share-page a:hover {
+      border-bottom: 1px dashed #fff; }
