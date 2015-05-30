@@ -20,4 +20,4 @@ Even after his concession, and even after an angel ministered to him, he still e
 > And there appeared to him an angel from heaven, strengthening him.  And being in an agony he prayed more earnestly; and his sweat became like great drops of blood falling down to the ground.  
 > *Luke 22:43-44*
 
-Yet the Messiah still chose to complete his mission, become the perfect sacrifice for our sins, and changed history for the better ever since.
+Yet the Messiah still chose to complete his mission, became the perfect sacrifice for our sins, and changed history for the better ever since.
