@@ -2,7 +2,7 @@
 layout: post
 title: What is love?
 ---
-We always hear of the term "falling in love" and "falling out of love".  It is very common even within Christian circles for people to assume that love is an emotion: something that happens (like a lightning bolt or a chemistry experiment).  It is perfectly reasonable to reconsider a dating relationship if it is certain one will not be happy if the relationship grows into the lifetime relationship of marriage.  However, many marriages miserably fail because of the assumption that if the associated emotions are missing, then love must be absent, and therefore the lifetime commitment made at the wedding should be reconsidered.
+We always hear the phrase "falling in love" and "falling out of love".  It is very common even within Christian circles for people to assume that love is an emotion: something that happens (like a lightning bolt or a chemistry experiment).  It is perfectly reasonable to reconsider a dating relationship if it is certain one will not be happy if the relationship grows into the lifetime relationship of marriage.  However, many marriages miserably fail because of the assumption that if the associated emotions are missing, then love must be absent, and therefore the lifetime commitment made at the wedding should be reconsidered.
 
 Yeshua the Messiah, who is HaShem Himself, is the embodiment of perfect love and therefore the prime example.  The Messiah provides the perfect, defining example of love.  Ultimately, love is a choice that, while emotions are definitely involved, transcends emotion to commit selflessly to others.
 
