@@ -17,6 +17,7 @@ Yet he knew what his mission was, let the love for his father and for his creati
 > *Luke 22:42, ESV*
 
 Even after his concession, and even after an angel ministered to him, he still experienced agony:
+
 > And there appeared to him an angel from heaven, strengthening him.  And being in an agony he prayed more earnestly; and his sweat became like great drops of blood falling down to the ground.  
 > *Luke 22:43-44, ESV*
 

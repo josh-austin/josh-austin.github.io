@@ -1,65 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Josh Austin</title>
-    <description>Christian, web developer, student of Jewish studies, Star Wars nerd.</description>
-    <link>http://josh-austin.com//</link>
-    <atom:link href="http://josh-austin.com//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 01 Jun 2015 19:16:59 -0400</pubDate>
-    <lastBuildDate>Mon, 01 Jun 2015 19:16:59 -0400</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
+    <title>Logbook of a Geek</title>
+    <atom:link href="http://josh-austin.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>http://josh-austin.github.io/</link>
+    <description>Christian, friend of the Jewish people, web developer</description>
+    <pubDate>Sat, 04 Jul 2015 23:28:29 -0400</pubDate>
+    
+      <item>
+        <title>A Flexible Build Tool</title>
+        <link>http://josh-austin.github.io/2015/07/05/Gulp.html</link>
+        <guid isPermaLink="true">http://josh-austin.github.io/2015/07/05/Gulp.html</guid>
+        <description>&lt;p&gt;Having learned a little Node.js in the last year, I recently tried my hand at the &lt;a href=&quot;http://gulpjs.com/&quot;&gt;Gulp&lt;/a&gt;
+build tool.  If you know some JS and want a flexible build tool, this is a great
+option for both front end and back end projects (or, in my case, both at the same time).&lt;/p&gt;
+
+&lt;p&gt;It’s quite simple for starters:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// place code for your default task here&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I’m building a site that has Node.js on the back end and Bootstrap on the front end.  For this project, I needed Gulp to automate some of my front end code building process.  I also needed to make my own theme customizations in LESS.  Using several plugins, I was able to make Gulp take my finished CSS, limit it to only what is actually being used, add vendor prefixes where applicable, and minify it.  As an added bonus, the needed build processes are triggered by a filesystem watcher when I turn it on (using “gulp watch” in my case).  It took a bit of code, but once I got the hang of it then it felt fairly simple:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;concat&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-concat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;less&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-less&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;minify&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-minify-css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;postcss&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-postcss&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;purify&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-purifycss&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rename&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-rename&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;watch&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-watch&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;autoprefixer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;autoprefixer-core&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;css_dest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./public/css/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;js_dest&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./public/js/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;jquery&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./node_modules/jquery/dist/jquery.min.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js_dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;bootstrap_js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./node_modules/bootstrap/dist/js/bootstrap.min.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js_dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;bootstrap_css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./node_modules/bootstrap/dist/css/bootstrap.min.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;purify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./index.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css_dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;theme_css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./src/theme.less&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;less&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;error&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;end&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;purify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./index.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;postcss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;autoprefixer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;browsers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;last 3 versions&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;])).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;minify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;keepsBreaks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;.min&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})).&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css_dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;watch&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;watch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./index.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;bootstrap_css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;theme_css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;watch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./src/theme.less&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;theme_css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;jquery&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bootstrap_js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;bootstrap_css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;theme_css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In conclusion: if you are willing to write your JS build script in JS and want the flexibility of the streaming
+interfaces you will find the Gulp is a great solution with an active ecosystem.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 05 Jul 2015 00:00:00 -0400</pubDate>
+      </item>
+    
+      <item>
+        <title>Independence Day</title>
+        <link>http://josh-austin.github.io/2015/07/04/Independence-Day.html</link>
+        <guid isPermaLink="true">http://josh-austin.github.io/2015/07/04/Independence-Day.html</guid>
+        <description>&lt;p&gt;First of all, I would like to say a THANK YOU to all the people in the service of
+our country who have worked hard to protect us.  My thoughts and prayers have
+been with you this day.&lt;/p&gt;
+
+&lt;p&gt;I know that these days have been discouraging to many political
+conservatives because of the ill-considered and, at times, immoral decisions
+made by our country’s leadership.  This makes many of us understandably want
+to do something about it.  There are three things you can do about it today:&lt;/p&gt;
+
+&lt;h3 id=&quot;love-god&quot;&gt;1.  Love God&lt;/h3&gt;
+&lt;p&gt;Are we letting ourselves lose focus on who is the most important Person in our lives?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[And] you shall love the Lord your God with all your heart and with all your soul and with all your might.&lt;br /&gt;
+&lt;em&gt;Deutoronomy 6:5 &amp;amp; Mark 12:30, ESV&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;love-others&quot;&gt;2.  Love Others&lt;/h3&gt;
+&lt;p&gt;Are we letting ourselves focus so much on ourselves that we lose focus on the needs of others?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;And he answered, “You shall love the Lord your God with all your heart and with all your soul and with all your strength and with all your mind, and your neighbor as yourself.”&lt;br /&gt;
+&lt;em&gt;Luke 10:27, ESV&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Do nothing from selfish ambition or conceit, but in humility count others more significant than yourselves.&lt;br /&gt;
+&lt;em&gt;Philippians 2:3, ESV&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;But if anyone has the world’s goods and sees his brother in need, yet closes his heart against him, how does God’s love abide in him?&lt;br /&gt;
+&lt;em&gt;1 John 3:17, ESV&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;keep-praying&quot;&gt;3.  Keep Praying!&lt;/h3&gt;
+&lt;p&gt;The Lord can change those who oppose what is good.  He changed a vehement anti-Christian activist into an apostle:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;But Saul, still breathing threats and murder against the disciples of the Lord, went to the high priest and asked him for letters to the synagogues at Damascus, so that if he found any belonging to the Way, men or women, he might bring them bound to Jerusalem.  Now as he went on his way, he approached Damascus, and suddenly a light from heaven shone around him. 4 And falling to the ground he heard a voice saying to him, “Saul, Saul, why are you persecuting me?”  And he said, “Who are you, Lord?” And he said, “I am Jesus, whom you are persecuting.&lt;br /&gt;
+&lt;em&gt;Acts 9:1-5, ESV&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;And immediately he proclaimed Jesus in the synagogues, saying, “He is the Son of God.”  And all who heard him were amazed and said, “Is not this the man who made havoc in Jerusalem of those who called upon this name? And has he not come here for this purpose, to bring them bound before the chief priests?”  But Saul increased all the more in strength, and confounded the Jews who lived in Damascus by proving that Jesus was the Christ.&lt;br /&gt;
+&lt;em&gt;Acts 9:20-22, ESV&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Sat, 04 Jul 2015 00:00:00 -0400</pubDate>
+      </item>
     
       <item>
         <title>Why I Like Macbook But Dislike iPhone</title>
-        <description>&lt;p&gt;This March I purchased a MacBook Pro 13&amp;quot; and replaced my 1st Generation Moto X with a shiny iPhone 6.  Within 2 months I put my iPhone 6 on eBay and bought a 2nd Generation Moto X.  Why?  Mainly because I prefer the Android operating system and the Moto X&amp;#39;s low-power notification screen display.&lt;/p&gt;
+        <link>http://josh-austin.github.io/2015/05/30/Why-I-Like-Macbook-But-Hate-iPhone.html</link>
+        <guid isPermaLink="true">http://josh-austin.github.io/2015/05/30/Why-I-Like-Macbook-But-Hate-iPhone.html</guid>
+        <description>&lt;p&gt;This March I purchased a MacBook Pro 13” and replaced my 1st Generation Moto X with a shiny iPhone 6.  Within 2 months I put my iPhone 6 on eBay and bought a 2nd Generation Moto X.  Why?  Mainly because I prefer the Android operating system and the Moto X’s low-power notification screen display.&lt;/p&gt;
 
-&lt;p&gt;As a computer geek, I strongly prefer the customizability of Android.  To be fair, if you are seeking an easy-to-use interface then iOS may be a better fit for you.  Additionally I found that I preferred the Moto X&amp;#39;s availability of voice activation on battery over needing to push down the iPhone button to talk to Siri while on battery.  Speaking of the button, I also like the Moto X&amp;#39;s display of notifications when waving my hand over it or pulling it out of my pocket.  I know much faster if a notification is important or not because I don&amp;#39;t have to push a button.&lt;/p&gt;
+&lt;p&gt;As a computer geek, I strongly prefer the customizability of Android.  To be fair, if you are seeking an easy-to-use interface then iOS may be a better fit for you.  Additionally I found that I preferred the Moto X’s availability of voice activation on battery over needing to push down the iPhone button to talk to Siri while on battery.  Speaking of the button, I also like the Moto X’s display of notifications when waving my hand over it or pulling it out of my pocket.  I know much faster if a notification is important or not because I don’t have to push a button.&lt;/p&gt;
 
-&lt;p&gt;My MacBook Pro 13&amp;quot;, on the other hand, is the best laptop I&amp;#39;ve had so far.  The OS is Unix-like, which is very helpful for some of my web development, the touch pad and keyboard feel &amp;quot;natural&amp;quot; to me, and, despite being a little on the gimmicky side of marketing (did I invent a new word?), the Retina display is definitely sharp.&lt;/p&gt;
+&lt;p&gt;My MacBook Pro 13”, on the other hand, is the best laptop I’ve had so far.  The OS is Unix-like, which is very helpful for some of my web development, the touch pad and keyboard feel “natural” to me, and, despite being a little on the gimmicky side of marketing (did I invent a new word?), the Retina display is definitely sharp.&lt;/p&gt;
 
 &lt;p&gt;All in all, I am glad I got my MacBook Pro and I was glad to try out the iPhone and learn the hard way why I like the Moto X so much.&lt;/p&gt;
 </description>
         <pubDate>Sat, 30 May 2015 00:00:00 -0400</pubDate>
-        <link>http://josh-austin.com//2015/05/30/Why-I-Like-Macbook-But-Hate-iPhone/</link>
-        <guid isPermaLink="true">http://josh-austin.com//2015/05/30/Why-I-Like-Macbook-But-Hate-iPhone/</guid>
-        
-        
       </item>
     
       <item>
         <title>What is love?</title>
-        <description>&lt;p&gt;We always hear the phrase &amp;quot;falling in love&amp;quot; and &amp;quot;falling out of love&amp;quot;.  It is very common even within Christian circles for people to assume that love is an emotion: something that happens (like a lightning bolt or a chemistry experiment).  It is perfectly reasonable to reconsider a dating relationship if it is certain one will not be happy if the relationship grows into the lifetime relationship of marriage.  However, many marriages miserably fail because of the assumption that if the associated emotions are missing, then love must be absent, and therefore the lifetime commitment made at the wedding should be reconsidered.&lt;/p&gt;
+        <link>http://josh-austin.github.io/2015/05/29/What-Is-Love.html</link>
+        <guid isPermaLink="true">http://josh-austin.github.io/2015/05/29/What-Is-Love.html</guid>
+        <description>&lt;p&gt;We always hear the phrase “falling in love” and “falling out of love”.  It is very common even within Christian circles for people to assume that love is an emotion: something that happens (like a lightning bolt or a chemistry experiment).  It is perfectly reasonable to reconsider a dating relationship if it is certain one will not be happy if the relationship grows into the lifetime relationship of marriage.  However, many marriages miserably fail because of the assumption that if the associated emotions are missing, then love must be absent, and therefore the lifetime commitment made at the wedding should be reconsidered.&lt;/p&gt;
 
 &lt;p&gt;Yeshua the Messiah, who is HaShem Himself, is the embodiment of perfect love and therefore the prime example.  The Messiah provides the perfect, defining example of love.  Ultimately, love is a choice that, while emotions are definitely involved, transcends emotion to commit selflessly to others.&lt;/p&gt;
 
 &lt;p&gt;When Yeshua was about to be sacrificed for our sins, he experienced strong emotions that stressed him.  He &lt;em&gt;naturally&lt;/em&gt; did not want to go through with this.  Nobody would.  He pleaded to his Father:&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Father, if you are willing, remove this cup from me.&lt;br&gt;
+  &lt;p&gt;Father, if you are willing, remove this cup from me.&lt;br /&gt;
 &lt;em&gt;Luke 22:42, ESV&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Yet he knew what his mission was, let the love for his father and for his creation transcend his feelings, and conceded:&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Nevertheless, not my will, but yours, be done.&lt;br&gt;
+  &lt;p&gt;Nevertheless, not my will, but yours, be done.&lt;br /&gt;
 &lt;em&gt;Luke 22:42, ESV&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Even after his concession, and even after an angel ministered to him, he still experienced agony:&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;And there appeared to him an angel from heaven, strengthening him.  And being in an agony he prayed more earnestly; and his sweat became like great drops of blood falling down to the ground.&lt;br&gt;
+  &lt;p&gt;And there appeared to him an angel from heaven, strengthening him.  And being in an agony he prayed more earnestly; and his sweat became like great drops of blood falling down to the ground.&lt;br /&gt;
 &lt;em&gt;Luke 22:43-44, ESV&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Yet the Messiah still chose to complete his mission, became the perfect sacrifice for our sins, and changed history for the better ever since.&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 May 2015 00:00:00 -0400</pubDate>
-        <link>http://josh-austin.com//2015/05/29/What-Is-Love/</link>
-        <guid isPermaLink="true">http://josh-austin.com//2015/05/29/What-Is-Love/</guid>
-        
-        
       </item>
     
   </channel>

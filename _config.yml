@@ -1,28 +1,70 @@
-# Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+# SITE CONFIGURATION
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://josh-austin.github.io" # the base hostname & protocol for your site
 
-# Permalinks
-permalink:        pretty
-relative_permalinks: true
+# THEME-SPECIFIC CONFIGURATION
+theme:
+  # Meta
+  title: Logbook of a Geek
+  description: "Christian, friend of the Jewish people, web developer" # used by search engines
 
-# Setup
-title:            Josh Austin
-tagline:          'Yet Another Coder'
-description:      'Christian, web developer, student of Jewish studies, Star Wars nerd.'
-url:              http://josh-austin.com
-baseurl:          /
+  # Header and footer text
+  header_text: >
+     <p>Christian, friend of the Jewish people, web developer.</p>
+     <p>Learning is a life-long pursuit.</p>
+  header_text_feature_image: img/black-white-city.jpg
+  footer_text: >
+   Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
 
-timezone:         America/New_York
+  # Icons
+  rss: false
+  email_address: # Full email address, e.g. "sam@example.com"
+  behance:
+  bitbucket:
+  dribbble:
+  facebook:
+  flickr:
+  github: "josh-austin"
+  google_plus:
+  instagram:
+  linkedin:  "https://www.linkedin.com/in/jpaustin"
+  pinterest:
+  reddit:
+  soundcloud:
+  stack_exchange:  # Full URL
+  steam:
+  tumblr:
+  twitter:
+  wordpress:
+  youtube:
 
-author:
-  name:           'Joshua Austin'
-  url:            https://github.com/josh-austin
+  # Scripts
+  google_analytics: # Tracking ID, e.g. "UA-000000-01"
+  disqus_shortname:
+  katex: true # Enable if using math markup
 
-paginate:         5
+  # Localization strings
+  str_follow_on: "Follow on"
+  str_rss_follow: "Follow RSS feed"
+  str_email: "Email"
+  str_next: "Next"
+  str_prev: "Prev"
+  str_continue_reading: "Continue reading"
 
-# Custom vars
-version:          2.1.0
+  # Colours, typography and padding
+  # Open the "_sass > base" folder, and open "_variables.scss"
+  google_fonts: "Source+Sans+Pro:400,700,700italic,400italic"
 
-github:
-  repo:           https://github.com/josh-austin/josh-austin.github.io
+  # Post navigation
+  post_navigation: false
+
+# PAGINATION
+paginate: 5
+paginate_path: "blog/page:num"
+
+# BUILD SETTINGS
+markdown: kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: :compressed
